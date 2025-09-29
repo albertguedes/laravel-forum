@@ -1,17 +1,21 @@
-![GitHub](https://img.shields.io/github/license/albertguedes/portfolio-laravel-blog) ![GitHub language count](https://img.shields.io/github/languages/count/albertguedes/portfolio-laravel-blog) ![GitHub last commit](https://img.shields.io/github/last-commit/albertguedes/portfolio-laravel-blog) 
+![GitHub](https://img.shields.io/github/license/albertguedes/laravel-forum) ![GitHub language count](https://img.shields.io/github/languages/count/albertguedes/laravel-forum) ![GitHub last commit](https://img.shields.io/github/last-commit/albertguedes/laravel-forum) 
 
-## Laravel Blog
+## Laravel Forum
 
-This is a simple blog made with Laravel Framework.  
+This is a simple forum made with Laravel Framework.  
 
-The blog contains:
+The forum contains:
 
-- a home page that show hte latest posts, and use paginating to see old posts.
-- post page.
+- a home page that show hte latest forums, and use paginating to see old forums.
+- topics list on forum page.
+- posts on topic page.
+- admin dashboard for admin users.
+- user profile page.
 - about page.
 - added categories for posts.
 - contact page with contact form.
 - added rss.
+- etc
 
 The admin dashboard contains:
 
@@ -20,7 +24,7 @@ The admin dashboard contains:
 - navbar with breadcrumbs, profile link and logout button.
 - a profile manager section
 - a user manager section with basic crud: list, create, show, edit and delete users. 
-- a post manager section with basic crud too.
+- a forums, topics and posts manager section with basic crud too.
 
 # References
 
