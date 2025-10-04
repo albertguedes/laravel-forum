@@ -28,4 +28,4 @@ The admin dashboard contains:
 
 # References
 
-- Laravel Framework: [https://laravel.com/docs/9.x](https://laravel.com/docs/9.x)
+- Laravel Framework: [https://laravel.com/docs/11.x](https://laravel.com/docs/11.x)
