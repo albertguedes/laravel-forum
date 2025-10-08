@@ -1,9 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -41,33 +43,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function profile(): HasOne
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function topics(): HasMany
+    {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function forums(): HasMany
+    {
+        return $this->hasMany(Forum::class);
+    }
+
     /**
     * Scope a query to only include popular posts.
     * https://www.scratchcode.io
     * @param  \Illuminate\Database\Eloquent\Builder  $query
     * @return \Illuminate\Database\Eloquent\Builder
     */
-    public function scopeIsActive($query)
+    public function scopeIsActive($query): Builder
     {
         return $query->where('is_active', '=', true);
-    }
-
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
-
-    public function topics()
-    {
-        return $this->hasMany(Topic::class);
-    }
-
-    public function forums()
-    {
-        return $this->hasMany(Forum::class);
-    }
-
-    public function profile() {
-        return $this->hasOne(UserProfile::class);
     }
 }

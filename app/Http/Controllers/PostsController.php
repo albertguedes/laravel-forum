@@ -1,20 +1,39 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\View\View;
+
+use App\Models\Forum;
+use App\Models\Post;
+use App\Models\Topic;
 
 class PostsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the posts independent of a topic o forum.
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(): View
+    public function index(?Forum $forum = null, ?Topic $topic = null): View
     {
-        return view('forums.topics.posts.index');
+        $query = Post::select('id', 'slug', 'title', 'created_at', 'user_id', 'description', 'content', 'published', 'children', 'parent')
+                        ->withCount(['children' => function($query) {
+                            $query->where('published', true);
+                        }])
+                        ->where('published',true);
+
+        if ($forum) {
+
+            if (!$forum->is_active || (!$topic || !$topic->is_active)) {
+                abort(404);
+            }
+            $query = $query->where('topic_id', $topic->id);
+        }
+
+        $posts = $query->orderBy('update_at','DESC')->paginate(5);
+
+        return view('forums.topics.posts.index', compact('posts'));
     }
 
     /**
@@ -23,16 +42,8 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Contracts\View\View
      */
-    public function show( Post $post ): View
+    public function show (?Forum $forum = null, ?Topic $topic = null, Post $post) : View
     {
-        $view = 'errors.404';
-        $data = [];
-
-        if( $post && $post->published ){
-            $view = 'post';
-            $data = compact('post');
-        }
-
-        return view($view,$data);
+        return view('forums.topics.posts.show', compact( 'post'));
     }
 }

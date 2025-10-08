@@ -27,7 +27,7 @@ class ForumFactory extends Factory
         $updated_at  = $this->faker->dateTimeBetween($created_at,'now');
         $user_id = User::inRandomOrder()->first()->id;
         $category_id = Category::inRandomOrder()->first()->id;
-        $title = $this->faker->unique()->sentence(4);
+        $title = trim($this->faker->unique()->sentence(4), '.');
         $slug = Str::slug($title);
         $description = $this->faker->paragraph();
         $is_active = $this->faker->boolean();

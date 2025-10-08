@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -10,7 +10,6 @@ use App\Models\Topic;
 
 class PostSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
@@ -18,14 +17,18 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        User::each(function (User $user)
+        Topic::each(function (Topic $topic)
         {
-            for ($i=0; $i<5; $i++) {
-                Post::factory()->create([
-                    'user_id' => $user->id,
-                    'topic_id' => Topic::inRandomOrder()->first()->id,
-                ]);
-            }
+            User::each(function (User $user) use ($topic)
+            {
+                if (rand(0, 1)) {
+                    Post::factory()->count(random_int(1,5))
+                                   ->create([
+                                    'user_id' => $user->id,
+                                    'topic_id' => $topic->id
+                                   ]);
+                }
+            });
         });
     }
 }

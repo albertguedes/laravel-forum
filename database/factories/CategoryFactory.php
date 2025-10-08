@@ -26,7 +26,7 @@ class CategoryFactory extends Factory
     {
         $created_at  = $this->faker->dateTime();
         $updated_at  = $this->faker->dateTimeBetween($created_at,'now');
-        //$parent_id   = null;
+        $parent_id   = null;
         $title       = $this->faker->unique()->words(2,true);
         $slug        = Str::slug($title,'-');
         $description = $this->faker->paragraph();
@@ -35,13 +35,12 @@ class CategoryFactory extends Factory
         return compact(
             'created_at',
             'updated_at',
-            //'parent_id',
+            'parent_id',
             'title',
             'slug',
             'description',
             'is_active'
         );
-
     }
 
     /**
@@ -51,34 +50,25 @@ class CategoryFactory extends Factory
      */
     public function configure(): static
     {
-        return $this->afterCreating(function (Category $category) {
-
+        return $this->afterCreating(function (Category $category)
+        {
             // Define a maximum number of attempts to find a parent category.
             $maxAttempts = 10;
             $attemptCount = 0;
 
             // Decide if the category is a main category or a child category.
-            if( $this->faker->boolean() ){
-
-                // Get some random category to be a parent.
-                $parent = Category::inRandomOrder()->first();
-
-                // Verify if the parent selected isn't a child category of
-                // the category, to prevent circular relationships.
-                while( CategoryHelper::hasDescendant($parent, $category) && $attemptCount < $maxAttempts ){
-                    // Get new parent if the old is a descendant of the category.
+            if ($this->faker->boolean() && Category::count() > 1) {
+                // Get a random parent category verifying that it is not a
+                // descendent or a sibling, or the maximum number of attempts
+                // has been reached.
+                do {
                     $parent = Category::inRandomOrder()->first();
-                    $attemptCount++;
-                }
-
-                if ($attemptCount < $maxAttempts) {
-                    $category->parent_id = $parent->id;
-                }
-
+                } while (
+                    $parent->isDescendantOf($category) ||
+                    $parent->isSiblingOf($category) &&
+                    (++$attemptCount < $maxAttempts)
+                );
             }
-
         });
     }
-
-
 }

@@ -153,6 +153,10 @@ class ComposerStaticInitb0d9d697b1ef56e17f14f4b49a8e8140
             'Laravel\\Passport\\Database\\Factories\\' => 36,
             'Laravel\\Passport\\' => 17,
         ),
+        'K' => 
+        array (
+            'Kalnoy\\Nestedset\\' => 17,
+        ),
         'I' => 
         array (
             'Illuminate\\Support\\' => 19,
@@ -520,6 +524,10 @@ class ComposerStaticInitb0d9d697b1ef56e17f14f4b49a8e8140
         array (
             0 => __DIR__ . '/..' . '/laravel/passport/src',
         ),
+        'Kalnoy\\Nestedset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kalnoy/nestedset/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -643,20 +651,24 @@ class ComposerStaticInitb0d9d697b1ef56e17f14f4b49a8e8140
         'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
         'App\\Http\\Controllers\\Admin\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoriesController.php',
         'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
+        'App\\Http\\Controllers\\Admin\\ForumsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ForumsController.php',
         'App\\Http\\Controllers\\Admin\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostsController.php',
         'App\\Http\\Controllers\\Admin\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProfileController.php',
         'App\\Http\\Controllers\\Admin\\TagsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TagsController.php',
+        'App\\Http\\Controllers\\Admin\\TopicsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TopicsController.php',
         'App\\Http\\Controllers\\Admin\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UsersController.php',
         'App\\Http\\Controllers\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoriesController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FeedController' => __DIR__ . '/../..' . '/app/Http/Controllers/FeedController.php',
-        'App\\Http\\Controllers\\ForumController' => __DIR__ . '/../..' . '/app/Http/Controllers/ForumController.php',
+        'App\\Http\\Controllers\\ForumsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ForumsController.php',
+        'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\PostsController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostsController.php',
         'App\\Http\\Controllers\\SitemapController' => __DIR__ . '/../..' . '/app/Http/Controllers/SitemapController.php',
         'App\\Http\\Controllers\\TagsController' => __DIR__ . '/../..' . '/app/Http/Controllers/TagsController.php',
-        'App\\Http\\Controllers\\TopicController' => __DIR__ . '/../..' . '/app/Http/Controllers/TopicController.php',
+        'App\\Http\\Controllers\\TopicsController' => __DIR__ . '/../..' . '/app/Http/Controllers/TopicsController.php',
+        'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckAdmin.php',
@@ -701,7 +713,7 @@ class ComposerStaticInitb0d9d697b1ef56e17f14f4b49a8e8140
         'App\\View\\Components\\CategoryMenuComponent' => __DIR__ . '/../..' . '/app/View/Components/CategoryMenuComponent.php',
         'App\\View\\Components\\CategoryPostsComponent' => __DIR__ . '/../..' . '/app/View/Components/CategoryPostsComponent.php',
         'App\\View\\Components\\CategoryTreeComponent' => __DIR__ . '/../..' . '/app/View/Components/CategoryTreeComponent.php',
-        'App\\View\\Components\\LatestPostsComponent' => __DIR__ . '/../..' . '/app/View/Components/LatestPostsComponent.php',
+        'App\\View\\Components\\LatestForumsComponent' => __DIR__ . '/../..' . '/app/View/Components/LatestForumsComponent.php',
         'App\\View\\Components\\PostFormComponent' => __DIR__ . '/../..' . '/app/View/Components/PostFormComponent.php',
         'App\\View\\Components\\ProfileFormComponent' => __DIR__ . '/../..' . '/app/View/Components/ProfileFormComponent.php',
         'App\\View\\Components\\TabsComponent' => __DIR__ . '/../..' . '/app/View/Components/TabsComponent.php',
@@ -3114,6 +3126,14 @@ class ComposerStaticInitb0d9d697b1ef56e17f14f4b49a8e8140
         'Illuminate\\View\\ViewFinderInterface' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
+        'Kalnoy\\Nestedset\\AncestorsRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/AncestorsRelation.php',
+        'Kalnoy\\Nestedset\\BaseRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/BaseRelation.php',
+        'Kalnoy\\Nestedset\\Collection' => __DIR__ . '/..' . '/kalnoy/nestedset/src/Collection.php',
+        'Kalnoy\\Nestedset\\DescendantsRelation' => __DIR__ . '/..' . '/kalnoy/nestedset/src/DescendantsRelation.php',
+        'Kalnoy\\Nestedset\\NestedSet' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NestedSet.php',
+        'Kalnoy\\Nestedset\\NestedSetServiceProvider' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NestedSetServiceProvider.php',
+        'Kalnoy\\Nestedset\\NodeTrait' => __DIR__ . '/..' . '/kalnoy/nestedset/src/NodeTrait.php',
+        'Kalnoy\\Nestedset\\QueryBuilder' => __DIR__ . '/..' . '/kalnoy/nestedset/src/QueryBuilder.php',
         'Laravel\\Passport\\ApiTokenCookieFactory' => __DIR__ . '/..' . '/laravel/passport/src/ApiTokenCookieFactory.php',
         'Laravel\\Passport\\AuthCode' => __DIR__ . '/..' . '/laravel/passport/src/AuthCode.php',
         'Laravel\\Passport\\Bridge\\AccessToken' => __DIR__ . '/..' . '/laravel/passport/src/Bridge/AccessToken.php',

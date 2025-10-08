@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
@@ -16,14 +15,15 @@ class TopicSeeder extends Seeder
      */
     public function run(): void
     {
-        User::each(function (User $user) {
-            for ($i=0; $i<5; $i++) {
-                $forum_id = Forum::inRandomOrder()->first()->id;
-                Topic::factory()->create([
-                    'user_id' => $user->id,
-                    'forum_id' => $forum_id
-                ]);
-            }
+        Forum::each(function (Forum $forum) {
+            User::each(function (User $user) use ($forum) {
+                if (rand(0, 1)) {
+                    Topic::factory()->count(random_int(1, 5))->create([
+                                        'forum_id' => $forum->id,
+                                        'user_id' => $user->id,
+                                    ]);
+                }
+            });
         });
     }
 }

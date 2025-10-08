@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('user_roles', function (Blueprint $table) {
             $table->id();
             $table->timestamp('created_at');
-            $this->foreignId('user_id')
+            $table->foreignId('user_id')
                   ->constrained()
                   ->onDelete('cascade');
-            $this->foreignId('role_id')
+            $table->foreignId('role_id')
                   ->constrained()
                   ->onDelete('cascade');
         });

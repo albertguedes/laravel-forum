@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use \Kalnoy\Nestedset\NestedSet;
+
 class CreatePostsTable extends Migration
 {
     /**
@@ -27,15 +29,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id')
                   ->constrained()
                   ->onDelete('set null');
-
-            /*
-            $table->foreign('parent_id')
-                  ->references('id')
-                  ->on('posts')
-                  ->nullable(true)
-                  ->onDelete('set null')
-                  ->default(null);
-            */
+            NestedSet::columns($table);
             $table->string('title')->unique();
             $table->text('description');
             $table->text('content');

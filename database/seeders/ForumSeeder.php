@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
@@ -16,7 +15,10 @@ class ForumSeeder extends Seeder
     public function run(): void
     {
         User::all()->each(function ($user) {
-            Forum::factory()->count(3)->create(['user_id' => $user->id]);
+            Forum::factory()->count(random_int(1,5))
+                            ->create([
+                                'user_id' => $user->id
+                            ]);
         });
     }
 }

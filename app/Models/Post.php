@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Kalnoy\Nestedset\NodeTrait;
+
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, NodeTrait;
 
     protected $fillable = [
         'user_id',
         'topic_id',
-        'published',
+        'category_id',
+        'parent_id',
         'title',
         'slug',
         'description',
         'content',
-        'category_id'
+        'published',
     ];
 
     public function getRouteKeyName()
@@ -29,8 +32,8 @@ class Post extends Model
         return $this->belongsTo(Topic::class);
     }
 
-    public function author(){
-        return $this->belongsTo(User::class, 'user_id');
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function category(){
@@ -51,5 +54,4 @@ class Post extends Model
     {
         return $query->where('published', '=', true);
     }
-
 }

@@ -27,11 +27,10 @@ class UserFactory extends Factory
         $created_at        = $this->faker->dateTime();
         $updated_at        = $this->faker->dateTimeBetween($created_at,'now');
         $email             = $this->faker->unique()->safeEmail();
-        $email_verified_at = $created_at;
+        $email_verified_at = $this->faker->dateTimeBetween($created_at, $updated_at);
         $password          = Hash::make($email);
         $remember_token    = Str::random(10);
         $is_active         = $this->faker->boolean();
-        $is_admin          = false;
 
         return compact(
             'created_at',
@@ -40,8 +39,7 @@ class UserFactory extends Factory
             'email_verified_at',
             'password',
             'remember_token',
-            'is_active',
-            'is_admin'
+            'is_active'
         );
 
     }

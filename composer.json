@@ -8,13 +8,14 @@
         "php": "^8.2",
         "diglactic/laravel-breadcrumbs": "^9.0",
         "guzzlehttp/guzzle": "^7.5",
+        "kalnoy/nestedset": "^6.0",
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^4.0",
-        "symfony/mailer": "*",
         "league/flysystem": "3.30.0",
-        "league/flysystem-local": "3.30.0"
+        "league/flysystem-local": "3.30.0",
+        "symfony/mailer": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

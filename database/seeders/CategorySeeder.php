@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -16,37 +16,6 @@ class CategorySeeder extends Seeder
     public function run()
     {
         // Create all categories without parent.
-        Category::factory()->count(13)->create();
-
-        // Set ( or not ) parent for all categories.
-        /*foreach( Category::all() as $category ){
-
-            $parent = Category::all()->random();
-
-            if( !$this->isDescendent($category,$parent) ){
-                echo $parent->id;
-                $parent->children()->save($category);
-            }
-
-        }*/
-
-    }
-
-    /**
-     * Function to verify if a category is descendent of given test category,
-     * to prevent circular categories.
-     */
-    public function isDescendent(Category $category, CAtegory $test): bool
-    {
-        $current = $test;
-
-        while( !is_null($current->parent) ){
-            if( $category === $current ){
-                return true;
-            }
-            $current = $current->parent;
-        }
-
-        return false;
+        Category::factory()->count(random_int(10, 25))->create();
     }
 }
