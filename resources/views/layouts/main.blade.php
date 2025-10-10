@@ -18,12 +18,12 @@
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" >
     </head>
     <body class="d-flex flex-column h-100">
-        <main id="main" class="flex-shrink-0" >
-            <div class="container" >
+        <div class="container" >
+            <main id="main" class="flex-shrink-0" >
                 <div class="row justify-content-center" >
-                    <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8 px-0" >
-                        <header id="header" class="row pt-5" >
-                            <div class="col-12 py-4 text-center text-md-start" >
+                    <div class="px-0 col-sm-10 col-md-10 col-lg-8 col-xl-8 col-xxl-8" >
+                        <header id="header" class="py-5 mt-5 row" >
+                            <div class="py-4 text-center col-12 text-md-start" >
                                 @if( Request::url() == route('home') )
                                 <h1 id="sitename" >
                                     <a href="{{ route('home') }}" >
@@ -40,17 +40,17 @@
                             </div>
                         </header>
                         <article id="content" class="row" >
-                            <div class="col-12 pt-5" >
+                            <div class="pt-5 col-12" >
                                 @yield('content')
                             </div>
                         </article>
                     </div>
                 </div>
-            </div>
-        </main>
-        <footer id="#footer" class="container sticky-bottom my-5 py-5 border-top" >
-            @include('partials.footer')
-        </footer>
+            </main>
+            <footer id="#footer" class="container py-5 my-5 sticky-bottom border-top" >
+                @include('partials.footer')
+            </footer>
+        </div>
         <script src="{{ asset('assets/js/f761473b22.js') }}" ></script>
         <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" ></script>
         <script src="{{ asset('assets/js/script.js') }}" ></script>

@@ -19,7 +19,7 @@ class ForumsController extends Controller
                             $query->where('is_active', true);
                         }])
                         ->where('is_active',true)
-                        ->orderBy('created_at','DESC')
+                        ->orderBy('title','ASC')
                         ->paginate(5);
 
         return view('forums.index', compact('forums'));

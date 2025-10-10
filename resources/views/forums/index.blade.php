@@ -3,28 +3,11 @@
 @section('description','List of all forums')
 @section('content')
 <div class="row" >
-
-    <div class="mb-4 fs-6 col-12" >
-        <a href="{{ route('home') }}" >
-            <i class="fas fa-home"></i> Home
-        </a>
-
-        <span class="mx-2" ><i class="fas fa-angle-right"></i></span>
-
-        <i class="fas fa-landmark"></i> Forums
+    <div class="col-12">
+        {{ Breadcrumbs::render('forums') }}
     </div>
-
-    <div class="pb-3 col-12" >
-        <h1 class="pb-3 text-uppercase" >
-            <div class="row" >
-                <div class="text-center col-1 d-flex align-items-center justify-content-center" >
-                    <i class="fas fa-landmark fs-1" ></i>
-                </div>
-                <div class="col-11 d-flex align-items-center" >
-                    Forums
-                </div>
-            </div>
-        </h1>
+    <div class="pb-5 col-12">
+        <h2 class="text-center text-md-start text-uppercase" >Forums</h2>
     </div>
     <div class="pb-3 col-12" >
         @if($forums->count()>0)

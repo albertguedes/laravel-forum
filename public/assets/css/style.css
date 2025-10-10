@@ -30,6 +30,10 @@ h1 {
   min-height: 100%;
 }
 
+#logout-form {
+    display: none;
+}
+
 a.btn {
     color: #ffffff;
 }

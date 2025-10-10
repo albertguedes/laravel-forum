@@ -1,30 +1,33 @@
 @unless($breadcrumbs->isEmpty())
-<nav aria-label="breadcrumb" class="d-flex flex-column align-items-center justify-content-center">
+<nav aria-label="breadcrumb" class="mb-3 fs-6">
     <ol class="breadcrumb">
     @foreach ($breadcrumbs as $breadcrumb)
+
         @if ($loop->first)
         <li class="breadcrumb-item d-flex align-items-center justify-content-center">
             @if($loop->first == $loop->last)
             <span>&nbsp;</span>
             @else
             <a href="{{ $breadcrumb->url }}">
-                <i class="fas fa-home"></i>
+                {{ customTitle($breadcrumb) }}
             </a>
             @endif
         </li>
         @elseif($loop->last)
         <li class="breadcrumb-item d-flex align-items-center justify-content-center">
-            {{ $breadcrumb->title }}
+            {{ customTitle($breadcrumb) }}
         </li>
         @else
         <li class="breadcrumb-item d-flex align-items-center justify-content-center">
             @if($breadcrumb->url)
-            <a href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a>
+            <a href="{{ $breadcrumb->url }}">
+                {{ customTitle($breadcrumb) }}</a>
             @else
-            {{ $breadcrumb->title }}
+                {{ customTitle($breadcrumb) }}
             @endif
         </li>
         @endif
+
     @endforeach
     </ol>
 </nav>

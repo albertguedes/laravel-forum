@@ -2,10 +2,15 @@
 @section('title', 'About Us')
 @section('content')
 <div class="row" >
-    <div class="col-12 pb-5">
+
+    <div class="col-12">
+        {{ Breadcrumbs::render('about') }}
+    </div>
+
+    <div class="pb-5 col-12">
         <h2 class="text-uppercase" >About</h2>
     </div>
-    <div class="col-12 pt-3" >
+    <div class="pt-3 col-12" >
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Non
             consectetur a erat nam at lectus. Amet dictum sit amet justo donec

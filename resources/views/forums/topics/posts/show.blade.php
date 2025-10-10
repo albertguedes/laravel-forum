@@ -3,31 +3,10 @@
 @section('description',$post->description)
 @section('content')
 <div class="row" >
-
-    <div class="mb-4 fs-6 col-12" >
-        <a href="{{ route('home') }}" >
-            <i class="fas fa-home"></i> Home
-        </a>
-
-        <span class="mx-2" ><i class="fas fa-angle-right"></i></span>
-
-        <a href="{{ route('forum', [ 'forum' => $post->topic->forum ]) }}" >
-            <i class="fas fa-landmark"></i> <em>{{ Str::limit($post->topic->forum->title, 16) }}</em>
-        </a>
-
-        <span class="mx-2" ><i class="fas fa-angle-right"></i></span>
-
-        <a href="{{ route('forum.topic', [ 'forum' => $post->topic->forum, 'topic' => $post->topic ]) }}" >
-            <i class="fas fa-list"></i> {{ Str::limit($post->topic->title, 16) }}
-        </a>
-
-        <span class="mx-2" ><i class="fas fa-angle-right"></i></span>
-
-        <i class="fas fa-comment"></i> {{ $post->title }}
-
+    <div class="col-12">
+        {{ Breadcrumbs::render('forum.topic.post', $post) }}
     </div>
-
-    <div class="pb-3 col-12" >
+    <div class="pb-5 col-12">
         <h1 class="pb-3 text-uppercase" >
             <div class="row" >
                 <div class="text-center col-1 d-flex align-items-center justify-content-center" >

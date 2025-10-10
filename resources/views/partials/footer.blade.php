@@ -8,23 +8,46 @@
                 <a class="nav-link" href="{{ route('about') }}" ><i class="fas fa-info-circle"></i> About</a>
             </li>
             <li class="nav-item" >
-                <a class="nav-link" href="{{ route('categories') }}" ><i class="fas fa-sitemap"></i> Categories</a>
-            </li>
-            <li class="nav-item" >
-                <a class="nav-link" href="{{ route('tags') }}" ><i class="fas fa-tag"></i> Tags</a>
-            </li>
-            <li class="nav-item" >
-                <a class="nav-link" href="{{ route('archive') }}" ><i class="fas fa-archive"></i> Archive</a>
-            </li>
-            <li class="nav-item" >
                 <a class="nav-link" href="{{ route('contact') }}" ><i class="fas fa-envelope"></i> Contact</a>
             </li>
             <li class="nav-item" >
                 <a class="nav-link" href="{{ route('rss') }}" ><i class="fas fa-rss"></i> Follow-us</a>
             </li>
+            <li class="nav-item" >
+                <strong>|</strong>
+            </li>
+            @auth
+            <li class="nav-item" >
+                <a class="nav-link" href="{{ route('profile') }}" ><i class="fas fa-user"></i> Profile</a>
+            </li>
+            <li class="nav-item" >
+                <a id="logout" class="nav-link" href="{{ route('logout') }}" >
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+                <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" >
+                    @csrf
+                </form>
+            </li>
+            @else
+            <li class="nav-item" >
+                <a class="nav-link" href="{{ route('auth.login') }}" ><i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="{{ route('auth.register') }}" ><i class="fas fa-user-plus"></i> Register</a>
+            </li>
+            @endauth
         </ul>
     </div>
-    <div class="col-12 py-5" >
-        <p class="text-center p-0 m-0" ><strong>Laravel Blog</strong> {{ date('Y') }} - <em>Free & Open Source.</em></p>
+    <div class="py-5 col-12" >
+        <p class="p-0 m-0 text-center" ><strong>Laravel Forum</strong> {{ date('Y') }} - <em>Free & Open Source.</em></p>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('logout-form').submit();
+        });
+    </script>
+@endpush
