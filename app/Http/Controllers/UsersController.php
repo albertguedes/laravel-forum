@@ -25,23 +25,28 @@ class UsersController extends Controller
 
     public function show(User $user): View
     {
-        if(!$user->is_active) {
+        if(!$user || !$user->is_active) {
             abort(404);
         }
 
+        $user_id = $user->id;
+
         $forums = Forum::select('slug', 'title', 'created_at', 'user_id', 'description', 'is_active')
-                        ->where('user_id', $user->id)
+                        ->where('user_id', $user_id)
+                        ->withCount([ 'topics', 'posts' ])
                         ->orderBy('title', 'ASC')
                         ->get();
 
-        $topics = Topic::with('forum')
-                        ->where('user_id', $user->id)
+        $topics = Topic::select('slug', 'title', 'created_at', 'user_id', 'description', 'is_active', 'forum_id')
+                        ->where('user_id', $user_id)
+                        ->withCount('posts')
                         ->orderBy('title', 'ASC')
                         ->get();
 
-        $posts = Post::with('topic.forum')
+        $posts = Post::select('slug', 'title', 'created_at', 'user_id', 'description', 'published', 'topic_id', 'parent_id')
                         ->with('topic')
-                        ->where('user_id', $user->id)
+                        ->withCount('children')
+                        ->where('user_id', $user_id)
                         ->orderBy('title', 'ASC')
                         ->get();
 

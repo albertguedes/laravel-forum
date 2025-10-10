@@ -6,6 +6,7 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 use App\Models\Forum;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\User;
 
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
@@ -61,5 +62,61 @@ Breadcrumbs::for('forum.topic.post', function (BreadcrumbTrail $trail, Post $pos
     ]),
     [
         'icon' => 'fas fa-comment'
+    ]);
+});
+
+// Profile
+Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Profile',
+        route('profile'),
+    [
+        'icon' => 'fas fa-user'
+    ]);
+});
+
+Breadcrumbs::for('profile.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('profile');
+    $trail->push('Edit',
+        route('profile.edit'),
+    [
+        'icon' => 'fas fa-edit'
+    ]);
+});
+
+Breadcrumbs::for('profile.password', function (BreadcrumbTrail $trail) {
+    $trail->parent('profile');
+    $trail->push('Password',
+        route('profile.password'),
+    [
+        'icon' => 'fas fa-key'
+    ]);
+});
+
+Breadcrumbs::for('profile.delete', function (BreadcrumbTrail $trail) {
+    $trail->parent('profile');
+    $trail->push('Delete Profile',
+        route('profile.delete'),
+    [
+        'icon' => 'fas fa-trash-alt'
+    ]);
+});
+
+// Users
+Breadcrumbs::for('users', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Users',
+        route('users'),
+    [
+        'icon' => 'fas fa-users'
+    ]);
+});
+
+Breadcrumbs::for('user', function (BreadcrumbTrail $trail, User $user) {
+    $trail->parent('users');
+    $trail->push($user->profile->username,
+        route('user', compact('user')),
+    [
+        'icon' => 'fas fa-user'
     ]);
 });

@@ -4,17 +4,15 @@
 @section('content')
 <div class="row" >
 
-    <div class="mb-5 fs-6 col-12" >
-        <a href="{{ route('home') }}" > <i class="fas fa-home"></i> Home</a>
-        <span class="mx-2" ><i class="fas fa-angle-right"></i></span>
-        <i class="fas fa-users"></i> Users
+    <div class="mb-5 col-12">
+        {{ Breadcrumbs::render('users') }}
     </div>
 
-    <div class="pb-3 col-12" >
+    <div class="mb-3 col-12" >
         <h1 class="pb-3 text-uppercase" >Users</h1>
     </div>
 
-    <div class="py-3 col-12" >
+    <div class="col-12" >
         @if($users)
         <div class="row" >
             @foreach($users as $user)
@@ -26,9 +24,17 @@
                         </a>
                     </div>
                     <div class="card-footer fs-6" >
-                        <i class="fas fa-landmark"></i> {{ $user->forums_count }} forums |
-                        <i class="fas fa-list"></i> {{ $user->topics_count }} topics |
-                        <i class="fas fa-comments"></i> {{ $user->posts_count }} posts
+                        <div class="row">
+                            <div class="text-center col">
+                                <i class="fas fa-landmark"></i> {{ $user->forums->count() }}
+                            </div>
+                            <div class="text-center col">
+                                <i class="fas fa-list"></i> {{ $user->topics->count() }}
+                            </div>
+                            <div class="text-center col">
+                                <i class="fas fa-comments"></i> {{ $user->posts->count() }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

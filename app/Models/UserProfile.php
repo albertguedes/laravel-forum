@@ -31,10 +31,10 @@ class UserProfile extends Model
         $name = $this->first_name;
 
         if ($this->middle_name) {
-            $name .= ' ' . $this->middle_name;
+            $name.= ' ' . $this->middle_name;
         }
 
-        $name .= ' ' . $this->last_name;
+        $name.= ' ' . $this->last_name;
 
         return $name;
     }

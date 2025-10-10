@@ -50,4 +50,24 @@ class ForumsController extends Controller
     {
         return view('forums.create');
     }
+
+    public function store(): View
+    {
+        return view('forums.store');
+    }
+
+    public function edit(Forum $forum): View
+    {
+        return view('forums.edit', compact('forum'));
+    }
+
+    public function update(Forum $forum): View
+    {
+        return view('forums.update', compact('forum'));
+    }
+
+    public function destroy(Forum $forum): View
+    {
+        return view('forums.destroy', compact('forum'));
+    }
 }

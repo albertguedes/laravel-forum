@@ -48,9 +48,9 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class);
     }
 
-    public function posts(): HasMany
+    public function forums(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Forum::class);
     }
 
     public function topics(): HasMany
@@ -58,19 +58,8 @@ class User extends Authenticatable
         return $this->hasMany(Topic::class);
     }
 
-    public function forums(): HasMany
+    public function posts(): HasMany
     {
-        return $this->hasMany(Forum::class);
-    }
-
-    /**
-    * Scope a query to only include popular posts.
-    * https://www.scratchcode.io
-    * @param  \Illuminate\Database\Eloquent\Builder  $query
-    * @return \Illuminate\Database\Eloquent\Builder
-    */
-    public function scopeIsActive($query): Builder
-    {
-        return $query->where('is_active', '=', true);
+        return $this->hasMany(Post::class);
     }
 }

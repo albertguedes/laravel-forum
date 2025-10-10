@@ -8,7 +8,7 @@
     </div>
 
     <div class="pb-5 col-12">
-        <h2 class="text-uppercase" >About</h2>
+        <h1 class="text-uppercase" >About</h1>
     </div>
     <div class="pt-3 col-12" >
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

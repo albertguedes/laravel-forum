@@ -28,12 +28,16 @@ class Post extends Model
         return 'slug';
     }
 
-    public function topic(){
-        return $this->belongsTo(Topic::class);
-    }
-
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function forum(){
+        return $this->belongsToThrough(Topic::class, Forum::class, 'topic_id', 'id', 'id');
+    }
+
+    public function topic(){
+        return $this->belongsTo(Topic::class);
     }
 
     public function category(){
@@ -42,16 +46,5 @@ class Post extends Model
 
     public function tags(){
         return $this->belongsToMany(Tag::class);
-    }
-
-    /**
-     * Scope a query to only include published posts.
-     * https://www.scratchcode.io
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopePublished($query)
-    {
-        return $query->where('published', '=', true);
     }
 }

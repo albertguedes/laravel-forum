@@ -16,6 +16,10 @@ h1 {
     color: #232323;
 }
 
+#footer {
+    background-color: #f2f4f4;
+}
+
 #sitename {
   width: 100%;
   font-size: 4rem;
@@ -29,6 +33,7 @@ h1 {
   height: 100%;
   min-height: 100%;
 }
+
 
 #logout-form {
     display: none;
@@ -58,6 +63,19 @@ a.btn.btn-light {
 
 #sidebar-nav .nav-link:hover, #sidebar-nav .nav-link.active  {
     color: #0dcaf0;
+}
+
+#userTab .nav-link {
+    color: black;
+}
+
+#userTab .nav-link.active {
+    color: #0dcaf0;
+}
+
+.tabroller {
+    max-height: 590px;
+    overflow-y: scroll;
 }
 
 .hidden-char {

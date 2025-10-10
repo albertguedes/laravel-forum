@@ -19,9 +19,9 @@ class Topic extends Model
         'author_id',
     ];
 
-    public function forum()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(Forum::class);
+        return 'slug';
     }
 
     public function user()
@@ -29,13 +29,13 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function forum()
+    {
+        return $this->belongsTo(Forum::class);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
     }
 }

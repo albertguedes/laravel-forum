@@ -24,15 +24,4 @@ class Tag extends Model
     public function posts(){
         return $this->belongsToMany(Post::class);
     }
-
-    /**
-    * Scope a query to only include active tags.
-    * https://www.scratchcode.io
-    * @param  \Illuminate\Database\Eloquent\Builder  $query
-    * @return \Illuminate\Database\Eloquent\Builder
-    */
-    public function scopeIsActive($query)
-    {
-        return $query->where('is_active', '=', true);
-    }
 }

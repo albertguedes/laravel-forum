@@ -83,7 +83,7 @@ class TopicsController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        return view('forums.topics.edit', compact('forum', 'topic'));
     }
 
     /**

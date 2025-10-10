@@ -21,7 +21,7 @@
                 <a class="nav-link" href="{{ route('profile') }}" ><i class="fas fa-user"></i> Profile</a>
             </li>
             <li class="nav-item" >
-                <a id="logout" class="nav-link" href="{{ route('logout') }}" >
+                <a id="logout" class="nav-link text-danger fs-5" href="" >
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
                 <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" >
@@ -42,12 +42,3 @@
         <p class="p-0 m-0 text-center" ><strong>Laravel Forum</strong> {{ date('Y') }} - <em>Free & Open Source.</em></p>
     </div>
 </div>
-
-@push('scripts')
-    <script>
-        document.getElementById('logout').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('logout-form').submit();
-        });
-    </script>
-@endpush

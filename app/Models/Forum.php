@@ -16,23 +16,15 @@ class Forum extends Model
         'category_id',
     ];
 
-    protected $casts = [
-        'is_active' => 'boolean',
-    ];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
+    protected function casts(){
+        return [
+            'is_active' => 'boolean',
+        ];
     }
 
-    public function topics()
+    public function getRouteKeyName()
     {
-        return $this->hasMany(Topic::class);
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
+        return 'slug';
     }
 
     public function user()
@@ -40,18 +32,13 @@ class Forum extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
     public function posts()
     {
-        return $this->hasMany(Post::class);
-    }
-
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
+        return $this->hasManyThrough(Post::class, Topic::class);
     }
 }
