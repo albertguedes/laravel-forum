@@ -22,15 +22,18 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|unique:user_profiles,username',
-            'email' => 'required|email|unique:users,email',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'middle_name' => 'required',
-            'birth_date' => 'required',
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
-            'gender' => 'required',
+            'user.email' => 'required|email|unique:users,email',
+            'user.password' => [
+                'required',
+                'confirmed'
+            ],
+            'user.password_confirmation' => 'required',
+            'profile.username' => 'required|unique:user_profiles,username',
+            'profile.first_name' => 'required',
+            'profile.last_name' => 'required',
+            'profile.middle_name' => 'nullable',
+            'profile.birth_date' => 'required',
+            'profile.gender' => 'required'
         ];
     }
 }

@@ -18,7 +18,7 @@ class UserProfile extends Model
         'gender',
         'birth_date',
         'username',
-        'bio'
+        'bio',
     ];
 
     public function user()

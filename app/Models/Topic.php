@@ -11,12 +11,12 @@ class Topic extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'forum_id',
         'title',
         'slug',
         'description',
         'is_active',
-        'forum_id',
-        'author_id',
     ];
 
     public function getRouteKeyName()
