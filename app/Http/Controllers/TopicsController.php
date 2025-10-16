@@ -30,23 +30,7 @@ class TopicsController extends Controller
 
         $topics = $query->paginate(5);
 
-        return view('forums.topics.index', compact('topics'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTopicRequest $request)
-    {
-        //
+        return view('forums.topics.index', compact('forum', 'topics'));
     }
 
     /**
@@ -76,6 +60,29 @@ class TopicsController extends Controller
         $posts = $query->paginate(5);
 
         return view('forums.topics.show', compact('forum', 'topic', 'posts'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Forum $forum)
+    {
+        return view('forums.topics.create', compact('forum'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(TopicStoreRequest $request)
+    {
+        $validate = $request->validated();
+        $topic = Topic::create($validate);
+
+        if (!$topic->exists) {
+            return view('forums.topics.show',compact('topic'))->with('error','Topic could not be created');
+        }
+
+        return view('forums.topics.show',compact('topic'))->with('success','Topic created');
     }
 
     /**

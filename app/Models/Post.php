@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToThrough;
 
 use Kalnoy\Nestedset\NodeTrait;
 
@@ -23,28 +26,33 @@ class Post extends Model
         'published',
     ];
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
 
-    public function user(){
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function forum(){
-        return $this->belongsToThrough(Topic::class, Forum::class, 'topic_id', 'id', 'id');
+    public function forum(): BelongsTo
+    {
+        return $this->topic->belongsTo(Forum::class);
     }
 
-    public function topic(){
+    public function topic(): BelongsTo
+    {
         return $this->belongsTo(Topic::class);
     }
 
-    public function category(){
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function tags(){
+    public function tags(): BelongsToMany
+    {
         return $this->belongsToMany(Tag::class);
     }
 }

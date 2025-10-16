@@ -40,6 +40,14 @@ Breadcrumbs::for('forum', function (BreadcrumbTrail $trail, Forum $forum) {
     ]);
 });
 
+Breadcrumbs::for('forum.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Create Forum',
+    route('forum.create'), [
+        'icon' => 'fas fa-plus'
+    ]);
+});
+
 // Topics
 Breadcrumbs::for('forum.topic', function (BreadcrumbTrail $trail, Topic $topic) {
     $trail->parent('forum', $topic->forum);
@@ -52,16 +60,39 @@ Breadcrumbs::for('forum.topic', function (BreadcrumbTrail $trail, Topic $topic) 
     ]);
 });
 
+Breadcrumbs::for('forum.topic.create', function (BreadcrumbTrail $trail, Forum $forum) {
+    $trail->parent('forum', $forum);
+    $trail->push('Create Topic', route('forum.topic.create', [
+        'forum' => $forum
+    ]),
+    [
+        'icon' => 'fas fa-plus'
+    ]);
+});
+
 // Posts
 Breadcrumbs::for('forum.topic.post', function (BreadcrumbTrail $trail, Post $post) {
     $trail->parent('forum.topic', $post->topic);
     $trail->push($post->title, route('forum.topic.post', [
-        'forum' => $post->topic->forum,
+        'forum' => $post->forum,
         'topic' => $post->topic,
         'post' => $post
     ]),
     [
         'icon' => 'fas fa-comment'
+    ]);
+});
+
+Breadcrumbs::for('forum.topic.post.create', function (BreadcrumbTrail $trail, Topic $topic) {
+
+    $trail->parent('forum.topic', $topic);
+
+    $trail->push('Create Post', route('forum.topic.post.create', [
+        'forum' => $topic->forum,
+        'topic' => $topic
+    ]),
+    [
+        'icon' => 'fas fa-plus'
     ]);
 });
 

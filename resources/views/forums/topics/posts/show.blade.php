@@ -41,7 +41,7 @@
         <div class="card" >
             <div class="card-header" >
                 <h2 class="card-title" >
-                    <a href="{{ route('post', [ 'forum' => $post->topic->forum, 'topic' => $post->topic, 'post' => $post->parent ]) }}" >
+                    <a href="{{ route('post', [ 'forum' => $post->forum, 'topic' => $post->topic, 'post' => $post->parent ]) }}" >
                         {{ $post->parent->title }}
                     </a>
                 </h2>
@@ -59,46 +59,38 @@
 
 </div>
 
-<div class="row" >
+<div class="p-0 row" >
 
     @auth
-    <div id="reply" class="p-0 col-12 card" >
-        <div class="card-header" >
-            <h3 class="card-title fs-1 fw-bolder" >Reply</h3>
-        </div>
-        <div class="card-body" >
-            <form method="POST" action="{{ route('post.store', [ 'forum' => $post->topic->forum, 'topic' => $post->topic, 'post' => $post ]) }}">
-                @csrf
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                <input type="hidden" name="topic_id" value="{{ $post->topic->id }}">
-                <input type="hidden" name="parent_id" value="{{ $post->id }}">
-                <div class="mb-3 form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror('title') is-valid" id="title" name="title" value="" required>
-                    @error('title')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
+    <div class="col-12" >
+        <div class="card" >
+            <div class="card-header" >
+                <h2 class="card-title" >Reply</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('post.store', [ 'forum' => $post->forum, 'topic' => $post->topic ]) }}" method="POST">
+                    @csrf
 
-                <div class="mb-3 form-group">
-                    <label for="content">Content</label>
-                    <textarea class="form-control @error('content') is-invalid @enderror('content') is-valid" id="content" name="content" rows="10" required></textarea>
-                    @error('content')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="topic_id" value="{{ $post->topic->id }}">
+                    <input type="hidden" name="reply_id" value="{{ $post->id }}">
 
-                <div class="text-center form-group">
-                    <button type="submit" class="text-white btn btn-lg btn-info fw-bolder">
-                        <i class="fas fa-reply"></i> Reply
-                    </button>
-                </div>
+                    <div class="mb-3 form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" required>
+                    </div>
 
-            </form>
+                    <div class="mb-3 form-group">
+                        <label for="content">Content</label>
+                        <textarea class="form-control" name="content" id="content" rows="5"></textarea>
+                    </div>
+
+                    <div class="text-center form-group">
+                        <button type="submit" class="text-white btn btn-lg btn-info"><i class="far fa-paper-plane"></i> Create</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
     @endauth

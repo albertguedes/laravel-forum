@@ -48,6 +48,18 @@
         <h2>LATEST POSTS</h2>
     </div>
 
+    @auth
+    <div class="col-12" >
+        <div class="card" >
+            <div class="card-body" >
+                <a href="{{ route('forum.topic.post.create', compact('forum','topic')) }}" class="btn btn-info" >
+                    <i class="fas fa-plus"></i> Create Post
+                </a>
+            </div>
+        </div>
+    </div>
+    @endauth
+
     <div class="py-3 col-12" >
         <div class="row" >
                 @if($posts)
@@ -90,7 +102,7 @@
                             </div>
                             @auth
                             <div class="card-footer d-flex justify-content-center">
-                                <a href="{{ route('forum.topic.post', compact('forum','topic','post')) }}#reply" class="btn btn-info" >Reply</a>
+                                <a href="{{ route('forum.topic.post.create', compact('forum','topic')) }}?reply={{ $post->id }}" class="btn btn-info" >Reply</a>
                             </div>
                             @endauth
                         </div>
@@ -105,6 +117,7 @@
                     <p class="text-center" >There are no posts in this topic</p>
                 </div>
                 @endif
+
             </div>
         </div>
     </div>

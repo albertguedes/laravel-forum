@@ -3,6 +3,19 @@
 @section('description','A simple forum made in laravel')
 @section('content')
 <div class="row" >
+
+    @auth
+    <div class="mb-3 col-12" >
+        <div class="card" >
+            <div class="card-body" >
+                <a href="{{ route('forum.create') }}" class="btn btn-info" >
+                    <i class="fas fa-plus"></i> Create Forum
+                </a>
+            </div>
+        </div>
+    </div>
+    @endauth
+
     <div class="pb-3 col-12" >
         @if($latest_forums->count())
             @foreach( $latest_forums as $forum )

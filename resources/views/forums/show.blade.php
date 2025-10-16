@@ -50,6 +50,18 @@
         <h2>LATEST TOPICS</h2>
     </div>
 
+    @auth
+    <div class="col-12" >
+        <div class="card" >
+            <div class="card-body" >
+                <a href="{{ route('forum.topic.create', compact('forum')) }}" class="btn btn-info" >
+                    <i class="fas fa-plus"></i> Create Topic
+                </a>
+            </div>
+        </div>
+    </div>
+    @endauth
+
     <div class="py-3 col-12" >
         <div class="row" >
 

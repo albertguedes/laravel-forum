@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 use App\Models\Forum;
 use App\Models\Post;
@@ -24,7 +25,6 @@ class PostsController extends Controller
                         ->where('published',true);
 
         if ($forum) {
-
             if (!$forum->is_active || (!$topic || !$topic->is_active)) {
                 abort(404);
             }
@@ -45,5 +45,36 @@ class PostsController extends Controller
     public function show (?Forum $forum = null, ?Topic $topic = null, Post $post) : View
     {
         return view('forums.topics.posts.show', compact( 'post'));
+    }
+
+    public function create(Forum $forum, Topic $topic, Request $request) : View
+    {
+        $reply = null;
+        if ($request->has('reply')) {
+            $reply = Post::find($request->get('reply'));
+            if(!$reply->exists) {
+                abort(404);
+            }
+            if ($reply->topic_id !== $topic->id) {
+                abort(404);
+            }
+            if (!$reply->published) {
+                abort(404);
+            }
+        }
+
+        return view('forums.topics.posts.create', compact('forum','topic', 'reply'));
+    }
+
+    public function store(PostStoreRequest $request) : View
+    {
+        $validate = $request->validated();
+        $post = Post::create($validate);
+
+        if (!$post->exists) {
+            return view('forums.topics.posts.show',compact('post'))->with('error','Post could not be created');
+        }
+
+        return view('forums.topics.posts.show',compact('post'))->with('success','Post created');
     }
 }
