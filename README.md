@@ -1,31 +1,34 @@
-![GitHub](https://img.shields.io/github/license/albertguedes/laravel-forum) ![GitHub language count](https://img.shields.io/github/languages/count/albertguedes/laravel-forum) ![GitHub last commit](https://img.shields.io/github/last-commit/albertguedes/laravel-forum) 
+# Laravel Forum
 
-## Laravel Forum
+A full-featured web forum built with **Laravel**, featuring user management, admin dashboard, categories, posts, and RSS feeds.
 
-This is a simple forum made with Laravel Framework.  
+## Features
 
-The forum contains:
+- **Public pages**: Home (latest forums), topic list, post viewing
+- **Admin dashboard**: User management (CRUD), forum/topic/post management, profile manager
+- **User system**: Registration, login, profile pages
+- **Content**: Categories, posts with timestamps, RSS feed
+- **Pages**: About, Contact form
 
-- a home page that show hte latest forums, and use paginating to see old forums.
-- topics list on forum page.
-- posts on topic page.
-- admin dashboard for admin users.
-- user profile page.
-- about page.
-- added categories for posts.
-- contact page with contact form.
-- added rss.
-- etc
+## Tech Stack
 
-The admin dashboard contains:
+- Laravel (PHP)
+- MySQL/MariaDB
+- Bootstrap (frontend)
+- Composer dependencies
 
-- a login initial page
-- sidebar with links for the sections
-- navbar with breadcrumbs, profile link and logout button.
-- a profile manager section
-- a user manager section with basic crud: list, create, show, edit and delete users. 
-- a forums, topics and posts manager section with basic crud too.
+## Installation
 
-# References
+```bash
+git clone https://github.com/albertguedes/laravel-forum.git
+cd laravel-forum
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
 
-- Laravel Framework: [https://laravel.com/docs/11.x](https://laravel.com/docs/11.x)
+## License
+
+MIT License - see [LICENSE](LICENSE.md)
